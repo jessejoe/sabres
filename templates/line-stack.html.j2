@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head><meta charset="utf-8"></head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    var option;
+    option = {
+  title: {
+    top: '3%',
+    left: '3%',
+    text: '{{ title }}'
+  },
+  tooltip: {
+    trigger: 'item'
+  },
+  legend: {
+    top: '5%',
+    data: {{ dataframe.columns.to_list() }}
+  },
+  grid: {
+    top: '10%',
+    left: '10%',
+    right: '10%',
+    bottom: '10%',
+  },
+  xAxis: {
+    type: 'category',
+    boundaryGap: false,
+    data: {{ dataframe.index.to_list() }}
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [
+    {% for column in dataframe %}
+    {
+      name: '{{ column }}',
+      type: 'line',
+      smooth: true,
+      endLabel: { show: true, formatter: '{a}' },
+      emphasis: { focus: 'series' },
+      lineStyle: { width: 10 },
+      data: {{ dataframe[column].fillna('').to_list() }}
+    },
+    {% endfor %}
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
