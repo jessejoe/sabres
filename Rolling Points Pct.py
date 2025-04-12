@@ -36,6 +36,8 @@ for csv in sorted(Path(".").glob("*.csv")):
 environment = Environment(loader=FileSystemLoader("templates/"))
 template = environment.get_template("line-stack.html.j2")
 
-content = template.render(title="Sabres 10G Rolling Points Percentage", dataframe=all_years)
+content = template.render(
+    title="Sabres 10G Rolling Points Percentage", dataframe=all_years, dark_mode=True
+)
 with open("docs/sabres-10g-rolling-points-pct.html", "w", encoding="utf-8") as f:
     f.write(content)
