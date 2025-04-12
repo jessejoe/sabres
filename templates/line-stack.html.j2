@@ -32,6 +32,9 @@
     bottom: '10%',
   },
   xAxis: {
+    name: '{{ dataframe.index.name }}',
+    nameLocation: 'middle',
+    nameGap: 30,
     type: 'category',
     boundaryGap: false,
     data: {{ dataframe.index.to_list() }}
