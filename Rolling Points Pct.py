@@ -37,7 +37,11 @@ environment = Environment(loader=FileSystemLoader("templates/"))
 template = environment.get_template("line-stack.html.j2")
 
 content = template.render(
-    title="Sabres 10G Rolling Points Percentage", dataframe=all_years, dark_mode=True
+    title="Sabres 10G Rolling Points Percentage",
+    dataframe=all_years,
+    dark_mode=True,
+    footer_text="Source - github.com/jessejoe/sabres",
+    footer_link="https://github.com/jessejoe/sabres",
 )
 with open("docs/sabres-10g-rolling-points-pct.html", "w", encoding="utf-8") as f:
     f.write(content)

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" style="height: 100%">
-<head><meta charset="utf-8"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no"></head>
 <body style="height: 100%; margin: 0">
   <div id="container" style="height: 100%"></div>
   <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
@@ -13,11 +13,18 @@
     var app = {};
     var option;
     option = {
-  title: {
-    top: '3%',
-    left: '3%',
+  title: [{
+    top: '10em',
+    left: '10em',
     text: 'Sabres 10G Rolling Points Percentage'
   },
+  {
+    subtext: 'Source - github.com/jessejoe/sabres',
+    sublink: 'https://github.com/jessejoe/sabres ',
+    top: 'bottom',
+    left: 'center',
+    padding: [30,10],
+  }],
   tooltip: {
     trigger: 'item'
   },
