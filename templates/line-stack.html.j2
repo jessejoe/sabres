@@ -47,7 +47,8 @@
     data: {{ dataframe.index.to_list() }}
   },
   yAxis: {
-    type: 'value'
+    type: 'value',
+    max: 1
   },
   series: [
     {% for column in dataframe %}
